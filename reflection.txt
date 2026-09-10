@@ -1,0 +1,34 @@
+Python vs C Memory Model
+
+In Python, when creating a variable like x = 42, Python automatically and invisibly declares it
+as the appropriate variable type. However, in C, the programmer must explicitly define what 
+type of variable x is before assigning a value to it. Without this, the code will not function 
+correctly. Additionally, C requires the use of semicolons after each completed line of code, 
+while Python does not. Another task that Python will do automatically is returning something 
+after a function is called; Python will return None if no return statement is given. In C, 
+however, I am predicting that the programmer has to explicitly state that there either isn't a 
+return (void), or explicitly give the return statement. Without it, there may either be an 
+error, the function may not work properly with no way of knowing, or there just may be no return 
+or confirmation that the function was executed properly. A systems programmer must understand 
+memory segments because C is much closer to the hardware, so they need to worry about factors 
+like speed and performance when designing a program. A Python developer, on the other hand, does
+not need to worry about these factors, because Python handles the system automatically.
+
+
+Memory Observations
+
+Each memory address was 16 digits, with 4-6 leading zeros for each. The data segment variables
+were the highest, with twelve digits (excluding leading zeros). The stack variables were the
+lowest overall, with only ten digits. I also noticed that after running the code multiple times,
+the data segment variables' addresses did not change. However, the stack variables' and heap 
+variables' addresses changed every time. In the stack, memory is automatically allocated when the 
+function is called, and automatically deleted when the function finishes. I could call the
+address for a stack variable without allocating it myself. In the heap, however, memory is
+dynamically allocated, meaning it must be specifically assigned and deleted by the programmer.
+This means that I had to use the functions malloc() and free() for the heap, but not for the
+stack variables. Understanding where these variables live helps me to better understand local
+and global variables; I knew that local variables only existed in their function, but when 
+learning Python, I didn't understand that the reason behind it was memory allocation. Now, I
+understand that local variables are important because it doesn't use up memory that isn't
+necessary. This also shows why it's important to not just make everything a global variable,
+as that could quickly use up memory.
